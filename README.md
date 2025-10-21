@@ -1,7 +1,7 @@
 # AlterNats
 [![GitHub Actions](https://github.com/Cysharp/AlterNats/workflows/Build-Debug/badge.svg)](https://github.com/Cysharp/AlterNats/actions) [![Releases](https://img.shields.io/github/release/Cysharp/AlterNats.svg)](https://github.com/Cysharp/AlterNats/releases)
 
-An alternative high performance [NATS](https://nats.io/) client for .NET. Zero Allocation and Zero Copy Architecture to achive x2~4 performance compare with [official NATS client](https://github.com/nats-io/nats.net) and [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis)'s PubSub.
+An alternative high performance [NATS](https://nats.io/) client for .NET. Zero Allocation and Zero Copy Architecture to achieve x2~4 performance compared with [official NATS client](https://github.com/nats-io/nats.net) and [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis)'s PubSub.
 
 ![image](https://user-images.githubusercontent.com/46207/164392256-46d09111-ec70-4cf3-b33d-38dc5d258455.png)
 
@@ -42,7 +42,7 @@ var subscription = await conn.SubscribeAsync<Person>("foo", x =>
 await conn.PublishAsync("foo", new Person(30, "bar"));
 
 // unsubscribe
-subscription.Dipose();
+subscription.Dispose();
 ```
 
 All value is automatically serialized via `System.Text.Json`. If you want to more performance, you can use [MessagePack for C#](https://github.com/neuecc/MessagePack-CSharp) as builtin serializer(requires `AlterNats.MessagePack` package).
@@ -120,7 +120,7 @@ var options = NatsOptions.Default with
 However for production use, use `Microsoft.Extensions.Logging` and setup your favorite logger. [Cysharp/ZLogger](https://github.com/Cysharp/ZLogger/) is especially recommended to keep high performance.
 
 ```csharp
-// You're using Generic Host(Microsoft.Extensions.Hositng) or ASP.NET Core, you can get ILoggerFactory from the built-in pipeline.
+// You're using Generic Host(Microsoft.Extensions.Hosting) or ASP.NET Core, you can get ILoggerFactory from the built-in pipeline.
 // Otherwise, build it yourself from ServiceCollection.
 var provider = new ServiceCollection()
     .AddLogging(x =>
@@ -416,7 +416,7 @@ public sealed record ConnectOptions
     [JsonPropertyName("nkey")]
     public string? Nkey { get; init; } = null;
 
-    /// <summary>The JWT that identifies a user permissions and acccount.</summary>
+    /// <summary>The JWT that identifies a user permissions and account.</summary>
     [JsonPropertyName("jwt")]
     public string? JWT { get; init; } = null;
 
